@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Authy {% endblock %}
+
+{% block content %}
+{% if  user.is_authenticated %}
+    <div class="sidebar">
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home" class="active"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#feed"><i class="fa fa-rss"></i> Feed</a></li>
+            <li><a href="#favorites"><i class="fa fa-star"></i> Favorites</a></li>
+            <li><a href="#messages"><i class="fa fa-envelope"></i> Messages</a></li>
+            <li><a href="blogs.html"><i class="fa fa-book"></i> Blogs</a></li>
+             <li><a href="{% url 'logout' %}">Logout</a></li>
+
+        </ul>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{% static '/img/four.jpeg' %}" alt="" class="img-circle" height="200px" width="200px" data-toggle="collapse" data-target="#imgone">
+            <p>Jedidah</p>
+            <p>she/her</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+    </div>
+</div>
+
+<div class="image-grid">
+
+        <div class="image">
+            <img src="{% static '/img/four.jpeg' %}" alt="Image Alt Text">
+            <p class="like-count" style="font-weight: bold; color: orchid; font-size: 14px;"> Likes</p>
+            <form method="post" >
+                {% csrf_token %}
+                <button type="submit" class="like-button">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Like
+                </button>
+            </form>
+        </div>
+
+</div>
+
+
+
+{% else %}
+<h4>Kindly note that you are not logged in</h4>
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+{% endblock %}
